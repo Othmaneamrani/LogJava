@@ -37,6 +37,8 @@ public class Test {
 	public static void Inscription () {
 		try {
 			Scanner scanner = new Scanner(System.in);
+			String line;
+			Boolean ok = true;
 			
 			File fichier = new File("Bd");
 			FileWriter fileWriter = new FileWriter(fichier , true);
@@ -55,8 +57,7 @@ public class Test {
 				confirmePassword = scanner.next();
 			}while(!confirmePassword.equals(password));
 			
-			String line;
-			Boolean ok = true;
+			
 			while((line = bufferedReader.readLine() ) != null ) {
 				String[] checkName = line.split("/");
 				if(checkName[0].equals(username)) {
@@ -69,6 +70,8 @@ public class Test {
 			bufferedWriter.write( username + "/" + password);
 			bufferedWriter.newLine();
 			System.out.println("inscription réussie !");
+			}else {
+				Inscription();
 			}
 			scanner.close();
 			bufferedReader.close();
